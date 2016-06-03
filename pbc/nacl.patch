@@ -1,0 +1,1313 @@
+Only in b/: .git
+diff -ru a/arith/dlog.c b/arith/dlog.c
+--- a/arith/dlog.c	2013-06-15 05:43:00.000000000 +0200
++++ b/arith/dlog.c	2015-07-23 21:09:56.000000000 +0200
+@@ -4,10 +4,10 @@
+ #include <stdint.h> // for intptr_t
+ #include <stdio.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_memory.h"
+-#include "misc/darray.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_memory.h"
++#include "../misc/darray.h"
+ 
+ struct snapshot_s {
+   element_t a;
+diff -ru a/arith/fasterfp.c b/arith/fasterfp.c
+--- a/arith/fasterfp.c	2013-06-15 05:43:00.000000000 +0200
++++ b/arith/fasterfp.c	2015-07-23 21:11:02.000000000 +0200
+@@ -18,11 +18,11 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_random.h"
+-#include "pbc_fp.h"
+-#include "pbc_memory.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_random.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_memory.h"
+ 
+ struct fp_field_data_s {
+   size_t limbs;
+diff -ru a/arith/fastfp.c b/arith/fastfp.c
+--- a/arith/fastfp.c	2013-06-15 05:43:00.000000000 +0200
++++ b/arith/fastfp.c	2015-07-23 21:10:37.000000000 +0200
+@@ -12,11 +12,11 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_random.h"
+-#include "pbc_fp.h"
+-#include "pbc_memory.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_random.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_memory.h"
+ 
+ struct fp_field_data_s {
+   size_t limbs;
+diff -ru a/arith/field.c b/arith/field.c
+--- a/arith/field.c	2013-06-15 05:43:00.000000000 +0200
++++ b/arith/field.c	2015-07-23 21:08:09.000000000 +0200
+@@ -5,10 +5,10 @@
+ #include <stdlib.h>
+ #include <string.h> // for memcmp()
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_multiz.h"
+-#include "pbc_memory.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_multiz.h"
++#include "../include/pbc_memory.h"
+ 
+ // returns recommended window size.  n is exponent.
+ static int optimal_pow_window_size(mpz_ptr n) {
+diff -ru a/arith/fieldquadratic.c b/arith/fieldquadratic.c
+--- a/arith/fieldquadratic.c	2013-06-15 05:43:00.000000000 +0200
++++ b/arith/fieldquadratic.c	2015-07-23 21:11:32.000000000 +0200
+@@ -12,11 +12,11 @@
+ #include <stdint.h> // for intptr_t
+ #include <stdlib.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_multiz.h"
+-#include "pbc_fieldquadratic.h"
+-#include "pbc_memory.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_multiz.h"
++#include "../include/pbc_fieldquadratic.h"
++#include "../include/pbc_memory.h"
+ 
+ // Per-element data.
+ typedef struct {
+diff -ru a/arith/fp.c b/arith/fp.c
+--- a/arith/fp.c	2013-06-15 05:43:00.000000000 +0200
++++ b/arith/fp.c	2015-07-23 21:11:53.000000000 +0200
+@@ -10,9 +10,9 @@
+ #include <stdint.h> // for intptr_t
+ #include <gmp.h>
+ #include <string.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_fp.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_fp.h"
+ 
+ // By default, use the montfp.c implementation of F_p. After
+ // pbc_tweak_use_fp(), future field_init_fp calls will use the specified
+diff -ru a/arith/init_random.c b/arith/init_random.c
+--- a/arith/init_random.c	2013-06-15 05:43:00.000000000 +0200
++++ b/arith/init_random.c	2015-07-23 21:12:11.000000000 +0200
+@@ -2,8 +2,8 @@
+ #include <stdint.h> // for intptr_t
+ #include <stdlib.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_random.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_random.h"
+ 
+ void pbc_init_random(void) {
+   FILE *fp;
+diff -ru a/arith/init_random.win32.c b/arith/init_random.win32.c
+--- a/arith/init_random.win32.c	2013-06-15 05:43:00.000000000 +0200
++++ b/arith/init_random.win32.c	2015-07-23 21:12:28.000000000 +0200
+@@ -5,9 +5,9 @@
+ #include <windows.h>
+ #include <wincrypt.h>
+ #include <gmp.h>
+-#include "pbc_random.h"
+-#include "pbc_utils.h"
+-#include "pbc_memory.h"
++#include "../include/pbc_random.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_memory.h"
+ 
+ static void win32_mpz_random(mpz_t r, mpz_t limit, void *data) {
+   UNUSED_VAR (data);
+diff -ru a/arith/montfp.c b/arith/montfp.c
+--- a/arith/montfp.c	2013-06-15 05:43:00.000000000 +0200
++++ b/arith/montfp.c	2015-07-23 21:12:52.000000000 +0200
+@@ -16,11 +16,11 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_random.h"
+-#include "pbc_fp.h"
+-#include "pbc_memory.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_random.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_memory.h"
+ 
+ // Per-field data.
+ typedef struct {
+diff -ru a/arith/multiz.c b/arith/multiz.c
+--- a/arith/multiz.c	2013-06-15 05:43:00.000000000 +0200
++++ b/arith/multiz.c	2015-07-23 21:13:21.000000000 +0200
+@@ -10,13 +10,13 @@
+ #include <stdint.h> // for intptr_t
+ #include <stdlib.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_multiz.h"
+-#include "pbc_random.h"
+-#include "pbc_fp.h"
+-#include "pbc_memory.h"
+-#include "misc/darray.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_multiz.h"
++#include "../include/pbc_random.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_memory.h"
++#include "../misc/darray.h"
+ 
+ // Per-element data.
+ struct multiz_s {
+diff -ru a/arith/naivefp.c b/arith/naivefp.c
+--- a/arith/naivefp.c	2013-06-15 05:43:00.000000000 +0200
++++ b/arith/naivefp.c	2015-07-23 21:13:47.000000000 +0200
+@@ -7,11 +7,11 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_random.h"
+-#include "pbc_fp.h"
+-#include "pbc_memory.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_random.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_memory.h"
+ 
+ static void zp_init(element_ptr e) {
+   e->data = pbc_malloc(sizeof(mpz_t));
+diff -ru a/arith/poly.c b/arith/poly.c
+--- a/arith/poly.c	2013-06-15 05:43:00.000000000 +0200
++++ b/arith/poly.c	2015-07-23 21:14:14.000000000 +0200
+@@ -4,12 +4,12 @@
+ #include <stdint.h> // for intptr_t
+ #include <stdlib.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_multiz.h"
+-#include "pbc_poly.h"
+-#include "pbc_memory.h"
+-#include "misc/darray.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_multiz.h"
++#include "../include/pbc_poly.h"
++#include "../include/pbc_memory.h"
++#include "../misc/darray.h"
+ 
+ // == Polynomial rings ==
+ //
+diff -ru a/arith/random.c b/arith/random.c
+--- a/arith/random.c	2013-06-15 05:43:00.000000000 +0200
++++ b/arith/random.c	2015-07-23 21:14:28.000000000 +0200
+@@ -2,9 +2,9 @@
+ #include <stdint.h> // for intptr_t
+ #include <stdlib.h>
+ #include <gmp.h>
+-#include "pbc_random.h"
+-#include "pbc_utils.h"
+-#include "pbc_memory.h"
++#include "../include/pbc_random.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_memory.h"
+ 
+ void pbc_init_random(void);
+ 
+diff -ru a/arith/ternary_extension_field.c b/arith/ternary_extension_field.c
+--- a/arith/ternary_extension_field.c	2013-06-15 05:43:00.000000000 +0200
++++ b/arith/ternary_extension_field.c	2015-07-23 21:14:50.000000000 +0200
+@@ -19,9 +19,9 @@
+ #include <stdio.h>
+ #include <stdint.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_memory.h"
+-#include "pbc_field.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_memory.h"
++#include "../include/pbc_field.h"
+ 
+ typedef unsigned long gf3;
+ 
+diff -ru a/arith/tinyfp.c b/arith/tinyfp.c
+--- a/arith/tinyfp.c	2013-06-15 05:43:00.000000000 +0200
++++ b/arith/tinyfp.c	2015-07-23 21:15:11.000000000 +0200
+@@ -9,11 +9,11 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_random.h"
+-#include "pbc_fp.h"
+-#include "pbc_memory.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_random.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_memory.h"
+ 
+ // Mostly wrappers. We use GMP routines for pow_mpz and invert.
+ 
+diff -ru a/arith/z.c b/arith/z.c
+--- a/arith/z.c	2013-06-15 05:43:00.000000000 +0200
++++ b/arith/z.c	2015-07-23 21:09:08.000000000 +0200
+@@ -6,12 +6,12 @@
+ #include <stdint.h> // for intptr_t
+ #include <stdlib.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_z.h"
+-#include "pbc_random.h"
+-#include "pbc_fp.h"
+-#include "pbc_memory.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_z.h"
++#include "../include/pbc_random.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_memory.h"
+ 
+ static void z_init(element_ptr e) {
+   e->data = pbc_malloc(sizeof(mpz_t));
+diff -ru a/benchmark/benchmark.c b/benchmark/benchmark.c
+--- a/benchmark/benchmark.c	2013-06-15 05:43:00.000000000 +0200
++++ b/benchmark/benchmark.c	2015-07-23 21:48:20.000000000 +0200
+@@ -1,6 +1,6 @@
+ #include <stdint.h> // for intptr_t
+-#include "pbc.h"
+-#include "pbc_test.h"
++#include "../include/pbc.h"
++#include "../include/pbc_test.h"
+ 
+ /* I've heard that sometimes automatic garbage collection can outperform
+  * manual collection, so I briefly tried using the Boehm-Demers-Weiser GC
+diff -ru a/benchmark/ellnet.c b/benchmark/ellnet.c
+--- a/benchmark/ellnet.c	2013-06-15 05:43:00.000000000 +0200
++++ b/benchmark/ellnet.c	2015-07-23 21:52:30.000000000 +0200
+@@ -1,5 +1,6 @@
+-#include <pbc.h>
+-#include "pbc_test.h"
++//#include <pbc.h>
++#include "../include/pbc.h"
++#include "../include/pbc_test.h"
+ 
+ void time_pairing(pairing_ptr pairing) {
+   int i, n;
+diff -ru a/benchmark/multipairing.c b/benchmark/multipairing.c
+--- a/benchmark/multipairing.c	2013-06-15 05:43:00.000000000 +0200
++++ b/benchmark/multipairing.c	2015-07-23 21:53:03.000000000 +0200
+@@ -1,7 +1,8 @@
+ // Compares dedicated multipairing (product of pairings) routine with naive
+ // method.
+-#include <pbc.h>
+-#include "pbc_test.h"
++//#include <pbc.h>
++#include "../include/pbc.h"
++#include "../include/pbc_test.h"
+ 
+ int main(int argc, char **argv) {
+   enum { K = 5 };
+diff -ru a/benchmark/timersa.c b/benchmark/timersa.c
+--- a/benchmark/timersa.c	2013-06-15 05:43:00.000000000 +0200
++++ b/benchmark/timersa.c	2015-07-23 21:51:37.000000000 +0200
+@@ -1,6 +1,7 @@
+-#include <pbc.h>
+-#include "pbc_fp.h"
+-#include "pbc_test.h"
++//#include <pbc.h>
++#include "../include/pbc.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_test.h"
+ 
+ int main(void) {
+   mpz_t p, q, N, d;
+diff -ru a/configure b/configure
+--- a/configure	2013-06-15 05:43:05.000000000 +0200
++++ b/configure	2015-07-23 21:04:27.000000000 +0200
+@@ -5075,7 +5075,8 @@
+   ;;
+ 
+ # This must be glibc/ELF.
+-linux* | k*bsd*-gnu | kopensolaris*-gnu)
++# Patched by naclports using patch_configure.py
++linux* | k*bsd*-gnu | kopensolaris*-gnu | nacl*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+@@ -10555,6 +10556,18 @@
+   shlibpath_var=LD_LIBRARY_PATH
+   ;;
+ 
++nacl)
++  # Patched by naclports using patch_configure.py
++  if libc_so=`$CC -print-file-name=libc.so` && [ "$libc_so" != libc.so ]; then
++    dynamic_linker="GNU/NaCl ld.so"
++    version_type=linux
++    library_names_spec='${libname}${release}${shared_ext}$versuffix ${libname}${release}${shared_ext}${major} ${libname}${shared_ext}'
++    soname_spec='${libname}${release}${shared_ext}$major'
++  else
++    dynamic_linker=no
++  fi
++  ;;
++
+ *)
+   dynamic_linker=no
+   ;;
+diff -ru a/ecc/a_param.c b/ecc/a_param.c
+--- a/ecc/a_param.c	2013-06-15 05:43:00.000000000 +0200
++++ b/ecc/a_param.c	2015-07-23 21:20:15.000000000 +0200
+@@ -4,18 +4,18 @@
+ #include <stdlib.h> //for rand, pbc_malloc, pbc_free
+ #include <string.h> //for strcmp
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_fp.h"
+-#include "pbc_fieldquadratic.h"
+-#include "pbc_param.h"
+-#include "pbc_pairing.h"
+-#include "pbc_curve.h"
+-#include "pbc_random.h"
+-#include "pbc_memory.h"
+-#include "ecc/param.h"
+-#include "pbc_a_param.h"
+-#include "pbc_a1_param.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_fieldquadratic.h"
++#include "../include/pbc_param.h"
++#include "../include/pbc_pairing.h"
++#include "../include/pbc_curve.h"
++#include "../include/pbc_random.h"
++#include "../include/pbc_memory.h"
++#include "../ecc/param.h"
++#include "../include/pbc_a_param.h"
++#include "../include/pbc_a1_param.h"
+ 
+ typedef struct {
+   int exp2;
+diff -ru a/ecc/curve.c b/ecc/curve.c
+--- a/ecc/curve.c	2013-06-15 05:43:00.000000000 +0200
++++ b/ecc/curve.c	2015-07-23 21:23:51.000000000 +0200
+@@ -5,14 +5,14 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_multiz.h"
+-#include "pbc_poly.h"
+-#include "pbc_curve.h"
+-#include "pbc_memory.h"
+-#include "pbc_random.h"
+-#include "misc/darray.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_multiz.h"
++#include "../include/pbc_poly.h"
++#include "../include/pbc_curve.h"
++#include "../include/pbc_memory.h"
++#include "../include/pbc_random.h"
++#include "../misc/darray.h"
+ 
+ // Per-field data.
+ typedef struct {
+diff -ru a/ecc/d_param.c b/ecc/d_param.c
+--- a/ecc/d_param.c	2013-06-15 05:43:00.000000000 +0200
++++ b/ecc/d_param.c	2015-07-23 21:21:08.000000000 +0200
+@@ -6,19 +6,19 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_poly.h"
+-#include "pbc_hilbert.h"
+-#include "pbc_fp.h"
+-#include "pbc_fieldquadratic.h"
+-#include "pbc_mnt.h"
+-#include "pbc_curve.h"
+-#include "pbc_param.h"
+-#include "pbc_pairing.h"
+-#include "pbc_memory.h"
+-#include "pbc_d_param.h"
+-#include "ecc/param.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_poly.h"
++#include "../include/pbc_hilbert.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_fieldquadratic.h"
++#include "../include/pbc_mnt.h"
++#include "../include/pbc_curve.h"
++#include "../include/pbc_param.h"
++#include "../include/pbc_pairing.h"
++#include "../include/pbc_memory.h"
++#include "../include/pbc_d_param.h"
++#include "../ecc/param.h"
+ 
+ struct d_param_s {
+   mpz_t q;       // curve defined over F_q
+diff -ru a/ecc/e_param.c b/ecc/e_param.c
+--- a/ecc/e_param.c	2013-06-15 05:43:00.000000000 +0200
++++ b/ecc/e_param.c	2015-07-23 21:21:48.000000000 +0200
+@@ -4,16 +4,16 @@
+ #include <stdlib.h> //for rand, pbc_malloc, pbc_free
+ #include <string.h> //for strcmp
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_fp.h"
+-#include "pbc_param.h"
+-#include "pbc_pairing.h"
+-#include "pbc_curve.h"
+-#include "pbc_random.h"
+-#include "pbc_memory.h"
+-#include "pbc_e_param.h"
+-#include "ecc/param.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_param.h"
++#include "../include/pbc_pairing.h"
++#include "../include/pbc_curve.h"
++#include "../include/pbc_random.h"
++#include "../include/pbc_memory.h"
++#include "../include/pbc_e_param.h"
++#include "../ecc/param.h"
+ 
+ struct e_param_s {
+   mpz_t q;    // Curve is defined over F_q.
+diff -ru a/ecc/eta_T_3.c b/ecc/eta_T_3.c
+--- a/ecc/eta_T_3.c	2013-06-15 05:43:00.000000000 +0200
++++ b/ecc/eta_T_3.c	2015-07-23 21:25:09.000000000 +0200
+@@ -2,13 +2,13 @@
+ #include <stdio.h>
+ #include <stdint.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_fp.h"
+-#include "pbc_memory.h"
+-#include "pbc_param.h"
+-#include "pbc_pairing.h"
+-#include "pbc_ternary_extension_field.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_memory.h"
++#include "../include/pbc_param.h"
++#include "../include/pbc_pairing.h"
++#include "../include/pbc_ternary_extension_field.h"
+ #include "param.h"
+ 
+ typedef struct { /* private data of $GF(3^m)$ */
+diff -ru a/ecc/f_param.c b/ecc/f_param.c
+--- a/ecc/f_param.c	2013-06-15 05:43:00.000000000 +0200
++++ b/ecc/f_param.c	2015-07-23 21:22:28.000000000 +0200
+@@ -3,17 +3,17 @@
+ #include <stdint.h> // for intptr_t
+ #include <stdlib.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_fp.h"
+-#include "pbc_fieldquadratic.h"
+-#include "pbc_param.h"
+-#include "pbc_pairing.h"
+-#include "pbc_poly.h"
+-#include "pbc_curve.h"
+-#include "pbc_memory.h"
+-#include "pbc_f_param.h"
+-#include "ecc/param.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_fieldquadratic.h"
++#include "../include/pbc_param.h"
++#include "../include/pbc_pairing.h"
++#include "../include/pbc_poly.h"
++#include "../include/pbc_curve.h"
++#include "../include/pbc_memory.h"
++#include "../include/pbc_f_param.h"
++#include "../ecc/param.h"
+ 
+ struct f_param_s {
+     mpz_t q; // Curve defined over F_q.
+diff -ru a/ecc/g_param.c b/ecc/g_param.c
+--- a/ecc/g_param.c	2013-06-15 05:43:00.000000000 +0200
++++ b/ecc/g_param.c	2015-07-23 21:23:09.000000000 +0200
+@@ -4,19 +4,19 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_poly.h"
+-#include "pbc_hilbert.h"
+-#include "pbc_fp.h"
+-#include "pbc_fieldquadratic.h"
+-#include "pbc_mnt.h"
+-#include "pbc_curve.h"
+-#include "pbc_param.h"
+-#include "pbc_pairing.h"
+-#include "pbc_memory.h"
+-#include "pbc_g_param.h"
+-#include "ecc/param.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_poly.h"
++#include "../include/pbc_hilbert.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_fieldquadratic.h"
++#include "../include/pbc_mnt.h"
++#include "../include/pbc_curve.h"
++#include "../include/pbc_param.h"
++#include "../include/pbc_pairing.h"
++#include "../include/pbc_memory.h"
++#include "../include/pbc_g_param.h"
++#include "../ecc/param.h"
+ 
+ struct g_param_s {
+   mpz_t q;    // Curve defined over F_q.
+diff -ru a/ecc/hilbert.c b/ecc/hilbert.c
+--- a/ecc/hilbert.c	2013-06-15 05:43:00.000000000 +0200
++++ b/ecc/hilbert.c	2015-07-23 21:24:30.000000000 +0200
+@@ -4,13 +4,13 @@
+ #include <stdlib.h> //for pbc_malloc, pbc_free
+ #include <gmp.h>
+ #include <math.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_poly.h"
+-#include "pbc_hilbert.h"
+-#include "pbc_memory.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_poly.h"
++#include "../include/pbc_hilbert.h"
++#include "../include/pbc_memory.h"
+ 
+-#include "misc/darray.h"
++#include "../misc/darray.h"
+ #include "mpc.h"
+ 
+ static mpf_t pi, eulere, recipeulere, epsilon, negepsilon;
+diff -ru a/ecc/mnt.c b/ecc/mnt.c
+--- a/ecc/mnt.c	2013-06-15 05:43:00.000000000 +0200
++++ b/ecc/mnt.c	2015-07-23 21:25:29.000000000 +0200
+@@ -6,10 +6,10 @@
+ #include <stdlib.h>
+ #include <stdint.h> // for intptr_t
+ #include <gmp.h>
+-#include "pbc_mnt.h"
+-#include "pbc_memory.h"
+-#include "pbc_utils.h"
+-#include "misc/darray.h"
++#include "../include/pbc_mnt.h"
++#include "../include/pbc_memory.h"
++#include "../include/pbc_utils.h"
++#include "../misc/darray.h"
+ 
+ struct pell_solution_s {
+   int count;
+diff -ru a/ecc/pairing.c b/ecc/pairing.c
+--- a/ecc/pairing.c	2013-06-15 05:43:00.000000000 +0200
++++ b/ecc/pairing.c	2015-07-23 21:26:09.000000000 +0200
+@@ -4,13 +4,13 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_poly.h"
+-#include "pbc_curve.h"
+-#include "pbc_param.h"
+-#include "pbc_pairing.h"
+-#include "pbc_memory.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_poly.h"
++#include "../include/pbc_curve.h"
++#include "../include/pbc_param.h"
++#include "../include/pbc_pairing.h"
++#include "../include/pbc_memory.h"
+ 
+ static int generic_is_almost_coddh(element_ptr a, element_ptr b,
+     element_ptr c, element_ptr d, pairing_t pairing) {
+diff -ru a/ecc/param.c b/ecc/param.c
+--- a/ecc/param.c	2013-06-15 05:43:00.000000000 +0200
++++ b/ecc/param.c	2015-07-23 21:27:59.000000000 +0200
+@@ -3,20 +3,20 @@
+ #include <stdint.h> // for intptr_t
+ #include <string.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_memory.h"
+-#include "pbc_param.h"
+-#include "pbc_a_param.h"
+-#include "pbc_mnt.h"
+-#include "pbc_d_param.h"
+-#include "pbc_e_param.h"
+-#include "pbc_f_param.h"
+-#include "pbc_a1_param.h"
+-#include "pbc_g_param.h"
+-#include "pbc_i_param.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_memory.h"
++#include "../include/pbc_param.h"
++#include "../include/pbc_a_param.h"
++#include "../include/pbc_mnt.h"
++#include "../include/pbc_d_param.h"
++#include "../include/pbc_e_param.h"
++#include "../include/pbc_f_param.h"
++#include "../include/pbc_a1_param.h"
++#include "../include/pbc_g_param.h"
++#include "../include/pbc_i_param.h"
+ 
+-#include "misc/symtab.h"
+-#include "ecc/param.h"
++#include "../misc/symtab.h"
++#include "../ecc/param.h"
+ 
+ // Parser that reads a bunch of strings and places them in a symbol table.
+ // TODO: Replace with Flex/Bison?
+diff -ru a/ecc/singular.c b/ecc/singular.c
+--- a/ecc/singular.c	2013-06-15 05:43:00.000000000 +0200
++++ b/ecc/singular.c	2015-07-23 21:26:37.000000000 +0200
+@@ -3,13 +3,13 @@
+ #include <stdint.h> // for intptr_t
+ #include <stdlib.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_curve.h"
+-#include "pbc_param.h"
+-#include "pbc_pairing.h"
+-#include "pbc_fp.h"
+-#include "pbc_memory.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_curve.h"
++#include "../include/pbc_param.h"
++#include "../include/pbc_pairing.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_memory.h"
+ 
+ //TODO: Store as integer mod ring instead and convert at last minute?
+ struct point_s {
+diff -ru a/example/bls.c b/example/bls.c
+--- a/example/bls.c	2013-06-15 05:43:00.000000000 +0200
++++ b/example/bls.c	2015-07-23 22:01:23.000000000 +0200
+@@ -3,8 +3,8 @@
+ // See the PBC_sig library for a practical implementation.
+ //
+ // Ben Lynn
+-#include <pbc.h>
+-#include <pbc_test.h>
++#include "../include/pbc.h"
++#include "../include/pbc_test.h"
+ 
+ int main(int argc, char **argv) {
+   pairing_t pairing;
+diff -ru a/example/hess.c b/example/hess.c
+--- a/example/hess.c	2013-06-15 05:43:00.000000000 +0200
++++ b/example/hess.c	2015-07-23 22:02:06.000000000 +0200
+@@ -4,8 +4,8 @@
+   Contributed by Dmitry Kosolapov.
+ */
+ 
+-#include <pbc.h>
+-#include <pbc_test.h>
++#include "../include/pbc.h"
++#include "../include/pbc_test.h"
+ 
+ int main(int argc, char **argv) {
+   pairing_t pairing;
+diff -ru a/example/joux.c b/example/joux.c
+--- a/example/joux.c	2013-06-15 05:43:00.000000000 +0200
++++ b/example/joux.c	2015-07-23 22:02:39.000000000 +0200
+@@ -4,8 +4,8 @@
+   Contributed by Dmitry Kosolapov.
+ */
+ 
+-#include <pbc.h>
+-#include <pbc_test.h>
++#include "../include/pbc.h"
++#include "../include/pbc_test.h"
+ 
+ int main(int argc, char **argv) {
+   pairing_t pairing;
+diff -ru a/example/paterson.c b/example/paterson.c
+--- a/example/paterson.c	2013-06-15 05:43:00.000000000 +0200
++++ b/example/paterson.c	2015-07-23 22:03:32.000000000 +0200
+@@ -4,8 +4,8 @@
+   Contributed by Dmitry Kosolapov.
+ */
+ 
+-#include <pbc.h>
+-#include <pbc_test.h>
++#include "../include/pbc.h"
++#include "../include/pbc_test.h"
+ 
+ int main(int argc, char **argv) {
+   pairing_t pairing;
+diff -ru a/example/yuanli.c b/example/yuanli.c
+--- a/example/yuanli.c	2013-06-15 05:43:00.000000000 +0200
++++ b/example/yuanli.c	2015-07-23 22:03:55.000000000 +0200
+@@ -28,8 +28,8 @@
+ I've defined it as H(A, B, h, Kab)=e(h,H1(A)+H1(B))+Kab.
+ */
+ 
+-#include <pbc.h>
+-#include <pbc_test.h>
++#include "../include/pbc.h"
++#include "../include/pbc_test.h"
+ 
+ int main(int argc, char **argv) {
+   pairing_t pairing;
+diff -ru a/example/zhangkim.c b/example/zhangkim.c
+--- a/example/zhangkim.c	2013-06-15 05:43:00.000000000 +0200
++++ b/example/zhangkim.c	2015-07-23 22:04:26.000000000 +0200
+@@ -4,8 +4,8 @@
+   Contributed by Dmitry Kosolapov.
+ */
+ 
+-#include <pbc.h>
+-#include <pbc_test.h>
++#include "../include/pbc.h"
++#include "../include/pbc_test.h"
+ 
+ int main(int argc, char **argv) {
+   pairing_t pairing;
+diff -ru a/example/zss.c b/example/zss.c
+--- a/example/zss.c	2013-06-15 05:43:00.000000000 +0200
++++ b/example/zss.c	2015-07-23 22:04:52.000000000 +0200
+@@ -4,8 +4,8 @@
+   Contributed by Dmitry Kosolapov.
+ */
+ 
+-#include <pbc.h>
+-#include <pbc_test.h>
++#include "../include/pbc.h"
++#include "../include/pbc_test.h"
+ 
+ int main(int argc, char **argv) {
+   pairing_t pairing;
+diff -ru a/gen/gena1param.c b/gen/gena1param.c
+--- a/gen/gena1param.c	2013-06-15 05:43:00.000000000 +0200
++++ b/gen/gena1param.c	2015-07-23 22:09:18.000000000 +0200
+@@ -1,4 +1,4 @@
+-#include "pbc.h"
++#include "../include/pbc.h"
+ 
+ int main(void)
+ {
+diff -ru a/gen/genaparam.c b/gen/genaparam.c
+--- a/gen/genaparam.c	2013-06-15 05:43:00.000000000 +0200
++++ b/gen/genaparam.c	2015-07-23 22:08:02.000000000 +0200
+@@ -7,7 +7,7 @@
+ // QBITS
+ //   The number of bits in q, the order of the full group. Default is 512.
+ 
+-#include "pbc.h"
++#include "../include/pbc.h"
+ 
+ int main(int argc, char **argv) {
+   int rbits = argc > 1 ? atoi(argv[1]) : 160;
+diff -ru a/gen/gendparam.c b/gen/gendparam.c
+--- a/gen/gendparam.c	2013-06-15 05:43:00.000000000 +0200
++++ b/gen/gendparam.c	2015-07-23 22:07:44.000000000 +0200
+@@ -1,8 +1,8 @@
+ // Generate MNT curve(s) for a given D.
+ 
+ #include <stdint.h> // for intptr_t
+-#include "pbc.h"
+-#include "pbc_utils.h"  // for UNUSED_VAR
++#include "../include/pbc.h"
++#include "../include/pbc_utils.h"  // for UNUSED_VAR
+ 
+ int generate(pbc_cm_t cm, void *data) {
+   UNUSED_VAR(data);
+diff -ru a/gen/geneparam.c b/gen/geneparam.c
+--- a/gen/geneparam.c	2013-06-15 05:43:00.000000000 +0200
++++ b/gen/geneparam.c	2015-07-23 22:07:25.000000000 +0200
+@@ -7,7 +7,7 @@
+ // QBITS
+ //   The number of bits in q, the order of the full group. Default is 1024.
+ 
+-#include "pbc.h"
++#include "../include/pbc.h"
+ 
+ int main(int argc, char **argv) {
+   int rbits = argc > 1 ? atoi(argv[1]) : 160;
+diff -ru a/gen/genfparam.c b/gen/genfparam.c
+--- a/gen/genfparam.c	2013-06-15 05:43:00.000000000 +0200
++++ b/gen/genfparam.c	2015-07-23 22:07:13.000000000 +0200
+@@ -5,7 +5,7 @@
+ // BITS
+ //   The number of bits in r, the order of the subgroup G1. Default is 160.
+ 
+-#include "pbc.h"
++#include "../include/pbc.h"
+ 
+ int main(int argc, char **argv) {
+   int bits = 160;
+diff -ru a/gen/gengparam.c b/gen/gengparam.c
+--- a/gen/gengparam.c	2013-06-15 05:43:00.000000000 +0200
++++ b/gen/gengparam.c	2015-07-23 22:06:59.000000000 +0200
+@@ -1,5 +1,5 @@
+ // Generate Freeman curves with a given discriminant.
+-#include "pbc.h"
++#include "../include/pbc.h"
+ 
+ int generate(pbc_cm_t cm, void *data) {
+   UNUSED_VAR(data);
+diff -ru a/gen/hilbertpoly.c b/gen/hilbertpoly.c
+--- a/gen/hilbertpoly.c	2013-06-15 05:43:00.000000000 +0200
++++ b/gen/hilbertpoly.c	2015-07-23 22:09:47.000000000 +0200
+@@ -13,8 +13,8 @@
+ #include <stdint.h> // for intptr_t
+ #include <stdlib.h> //for atoi, exit
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_hilbert.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_hilbert.h"
+ 
+ static void xpow(int degree) {
+   if (degree == 1) {
+diff -ru a/gen/listfreeman.c b/gen/listfreeman.c
+--- a/gen/listfreeman.c	2013-06-15 05:43:00.000000000 +0200
++++ b/gen/listfreeman.c	2015-07-23 22:10:16.000000000 +0200
+@@ -1,7 +1,7 @@
+ // List discriminant and bits in r and q for type G pairings that may be
+ // suitable for cryptography.
+ 
+-#include "pbc.h"
++#include "../include/pbc.h"
+ 
+ int show(pbc_cm_t cm, void *data) {
+   unsigned int D = * (unsigned *) data;
+diff -ru a/gen/listmnt.c b/gen/listmnt.c
+--- a/gen/listmnt.c	2013-06-15 05:43:00.000000000 +0200
++++ b/gen/listmnt.c	2015-07-23 22:10:30.000000000 +0200
+@@ -1,7 +1,7 @@
+ // For different discriminants D, list group size and representation size
+ // of resulting MNT curves.
+ 
+-#include "pbc.h"
++#include "../include/pbc.h"
+ 
+ int consider(pbc_cm_t cm, void *data) {
+   unsigned int D = * (unsigned *) data;
+diff -ru a/guru/19.c b/guru/19.c
+--- a/guru/19.c	2013-06-15 05:43:00.000000000 +0200
++++ b/guru/19.c	2015-07-23 21:55:03.000000000 +0200
+@@ -28,9 +28,9 @@
+  * 19 is small enough that an explicit expression of f_P can be found.
+  */
+ 
+-#include "pbc.h"
+-#include "pbc_fp.h"
+-#include "pbc_fieldquadratic.h"
++#include "../include/pbc.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_fieldquadratic.h"
+ 
+ static void miller(element_t res, element_t P, element_ptr QR, element_ptr R, int n) {
+   // Collate divisions.
+diff -ru a/guru/59.c b/guru/59.c
+--- a/guru/59.c	2013-06-15 05:43:00.000000000 +0200
++++ b/guru/59.c	2015-07-23 21:55:17.000000000 +0200
+@@ -1,9 +1,9 @@
+ // Step-by-step Weil and Tate pairings.
+ // For my thesis.
+ #include <string.h>
+-#include "pbc.h"
+-#include "pbc_fp.h"
+-#include "pbc_fieldquadratic.h"
++#include "../include/pbc.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_fieldquadratic.h"
+ 
+ static field_t Fq, Fq2, E, E2;
+ static mpz_t order;
+diff -ru a/guru/eta_T_3_test.c b/guru/eta_T_3_test.c
+--- a/guru/eta_T_3_test.c	2013-06-15 05:43:00.000000000 +0200
++++ b/guru/eta_T_3_test.c	2015-07-23 21:55:34.000000000 +0200
+@@ -5,9 +5,9 @@
+ #include <stdarg.h>
+ #include <stdio.h>
+ #include <gmp.h>
+-#include "pbc.h"
+-#include "pbc_ternary_extension_field.h"
+-#include "pbc_test.h"
++#include "../include/pbc.h"
++#include "../include/pbc_ternary_extension_field.h"
++#include "../include/pbc_test.h"
+ 
+ static pairing_t pairing;
+ static element_t a1, a2, b1, b2, c1, c2;
+diff -ru a/guru/exp_test.c b/guru/exp_test.c
+--- a/guru/exp_test.c	2013-06-15 05:43:00.000000000 +0200
++++ b/guru/exp_test.c	2015-07-23 21:55:54.000000000 +0200
+@@ -1,8 +1,8 @@
+ // Mutliexponentiation benchmark and test.
+ 
+ #include <string.h>
+-#include "pbc.h"
+-#include "pbc_test.h"
++#include "../include/pbc.h"
++#include "../include/pbc_test.h"
+ 
+ int main(int argc, char **argv) {
+   pairing_t pairing;
+diff -ru a/guru/fp_test.c b/guru/fp_test.c
+--- a/guru/fp_test.c	2013-06-15 05:43:00.000000000 +0200
++++ b/guru/fp_test.c	2015-07-23 21:54:39.000000000 +0200
+@@ -1,8 +1,8 @@
+ // Test F_p.
+ 
+-#include "pbc.h"
+-#include "pbc_fp.h"
+-#include "pbc_test.h"
++#include "../include/pbc.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_test.h"
+ 
+ int main(void) {
+   field_t fp;
+diff -ru a/guru/indexcalculus.c b/guru/indexcalculus.c
+--- a/guru/indexcalculus.c	2013-06-15 05:43:00.000000000 +0200
++++ b/guru/indexcalculus.c	2015-07-23 21:56:23.000000000 +0200
+@@ -4,8 +4,8 @@
+ #include <string.h>
+ #include <math.h>
+ #include <gmp.h>
+-#include "pbc.h"
+-#include "pbc_utils.h"
++#include "../include/pbc.h"
++#include "../include/pbc_utils.h"
+ 
+ struct cell_s {
+   int ind;
+diff -ru a/guru/param_parse_test.c b/guru/param_parse_test.c
+--- a/guru/param_parse_test.c	2013-06-15 05:43:00.000000000 +0200
++++ b/guru/param_parse_test.c	2015-07-23 21:56:36.000000000 +0200
+@@ -7,7 +7,7 @@
+ // overwrites existing elements during insert.
+ //
+ // Run with valgrind to spot the bug.
+-#include "pbc.h"
++#include "../include/pbc.h"
+ 
+ int main(void) {
+   pairing_t p;
+diff -ru a/guru/poly_test.c b/guru/poly_test.c
+--- a/guru/poly_test.c	2013-06-15 05:43:00.000000000 +0200
++++ b/guru/poly_test.c	2015-07-23 21:59:44.000000000 +0200
+@@ -1,9 +1,9 @@
+ // Test polynomials.
+-#include "pbc.h"
+-#include "pbc_fp.h"
+-#include "pbc_poly.h"
+-#include "pbc_test.h"
+-#include "misc/darray.h"
++#include "../include/pbc.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_poly.h"
++#include "../include/pbc_test.h"
++#include "../misc/darray.h"
+ 
+ static void elfree(void *data) {
+   element_clear(data);
+diff -ru a/guru/prodpairing_test.c b/guru/prodpairing_test.c
+--- a/guru/prodpairing_test.c	2013-06-15 05:43:00.000000000 +0200
++++ b/guru/prodpairing_test.c	2015-07-23 21:57:12.000000000 +0200
+@@ -2,8 +2,8 @@
+ // pairing_init_pbc_param().
+ //
+ // By Michael Adjedj, Ben Lynn.
+-#include "pbc.h"
+-#include "pbc_test.h"
++#include "../include/pbc.h"
++#include "../include/pbc_test.h"
+ 
+ int main(void) {
+   pbc_param_t param;
+diff -ru a/guru/quadratic_test.c b/guru/quadratic_test.c
+--- a/guru/quadratic_test.c	2013-06-15 05:43:00.000000000 +0200
++++ b/guru/quadratic_test.c	2015-07-23 21:57:31.000000000 +0200
+@@ -1,9 +1,9 @@
+ // Test quadratic field extensions.
+ 
+-#include "pbc.h"
+-#include "pbc_fp.h"
+-#include "pbc_fieldquadratic.h"
+-#include "pbc_test.h"
++#include "../include/pbc.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_fieldquadratic.h"
++#include "../include/pbc_test.h"
+ 
+ int main(void) {
+   field_t fp, fp2;
+diff -ru a/guru/sing.c b/guru/sing.c
+--- a/guru/sing.c	2013-06-15 05:43:00.000000000 +0200
++++ b/guru/sing.c	2015-07-23 21:57:49.000000000 +0200
+@@ -6,9 +6,9 @@
+  * E_ns(F_19) is a cyclic group of order 18.
+  */
+ 
+-#include "pbc.h"
+-#include "pbc_singular.h"
+-#include "pbc_fp.h"
++#include "../include/pbc.h"
++#include "../include/pbc_singular.h"
++#include "../include/pbc_fp.h"
+ 
+ static void miller(element_t res, element_t P, element_t Q, element_t R, int n)
+ {
+diff -ru a/guru/ternary_extension_field_test.c b/guru/ternary_extension_field_test.c
+--- a/guru/ternary_extension_field_test.c	2013-06-15 05:43:00.000000000 +0200
++++ b/guru/ternary_extension_field_test.c	2015-07-23 21:58:09.000000000 +0200
+@@ -1,9 +1,9 @@
+ /* test ternary extension fields $GF(3^m)$, $GF(3^{2*m})$, $GF(3^{3*m})$ and $GF(3^{6*m})$
+    Outputing nothing if everything is good. */
+ 
+-#include "pbc.h"
+-#include "pbc_ternary_extension_field.h"
+-#include "pbc_test.h"
++#include "../include/pbc.h"
++#include "../include/pbc_ternary_extension_field.h"
++#include "../include/pbc_test.h"
+ #include <string.h>
+ #include <stdio.h>
+ 
+diff -ru a/guru/testindexcalculus.c b/guru/testindexcalculus.c
+--- a/guru/testindexcalculus.c	2013-06-15 05:43:00.000000000 +0200
++++ b/guru/testindexcalculus.c	2015-07-23 21:58:26.000000000 +0200
+@@ -1,6 +1,6 @@
+ #include <stdio.h>
+ #include <gmp.h>
+-#include "pbc.h"
++#include "../include/pbc.h"
+ 
+ int main(int argc, char **argv)
+ {
+diff -ru a/guru/timefp.c b/guru/timefp.c
+--- a/guru/timefp.c	2013-06-15 05:43:00.000000000 +0200
++++ b/guru/timefp.c	2015-07-23 21:58:43.000000000 +0200
+@@ -1,6 +1,6 @@
+-#include "pbc.h"
+-#include "pbc_fp.h"
+-#include "pbc_test.h"
++#include "../include/pbc.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_test.h"
+ 
+ static void timefield(field_t fp) {
+   int i, n;
+diff -ru a/misc/darray.c b/misc/darray.c
+--- a/misc/darray.c	2013-06-15 05:43:00.000000000 +0200
++++ b/misc/darray.c	2015-07-23 21:15:43.000000000 +0200
+@@ -1,7 +1,7 @@
+ #include <stdlib.h>
+ #include <stdio.h>
+ #include <string.h>
+-#include "pbc_memory.h"
++#include "../include/pbc_memory.h"
+ #include "darray.h"
+ 
+ #define NDEBUG
+diff -ru a/misc/extend_printf.c b/misc/extend_printf.c
+--- a/misc/extend_printf.c	2013-06-15 05:43:00.000000000 +0200
++++ b/misc/extend_printf.c	2015-07-23 21:16:19.000000000 +0200
+@@ -8,9 +8,9 @@
+ #include <string.h>
+ #include <stdarg.h>
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
+-#include "pbc_memory.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
++#include "../include/pbc_memory.h"
+ 
+ struct sninfo_s {
+   char *s;
+diff -ru a/misc/memory.c b/misc/memory.c
+--- a/misc/memory.c	2013-06-15 05:43:00.000000000 +0200
++++ b/misc/memory.c	2015-07-23 21:16:43.000000000 +0200
+@@ -2,8 +2,8 @@
+ #include <stdint.h> // for intptr_t
+ #include <stdio.h>
+ #include <string.h>
+-#include "pbc_utils.h"
+-#include "pbc_memory.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_memory.h"
+ 
+ #ifdef SAFE_CLEAN
+ /* guarantee zeroing the memory */
+diff -ru a/misc/symtab.c b/misc/symtab.c
+--- a/misc/symtab.c	2013-06-15 05:43:00.000000000 +0200
++++ b/misc/symtab.c	2015-07-23 21:16:56.000000000 +0200
+@@ -1,6 +1,6 @@
+ #include <stdlib.h>
+ #include <string.h>
+-#include "pbc_memory.h"
++#include "../include/pbc_memory.h"
+ 
+ #include "symtab.h"
+ 
+diff -ru a/misc/utils.c b/misc/utils.c
+--- a/misc/utils.c	2013-06-15 05:43:00.000000000 +0200
++++ b/misc/utils.c	2015-07-23 21:17:12.000000000 +0200
+@@ -4,8 +4,8 @@
+ #include <stdint.h> // for intptr_t
+ #include <gmp.h>
+ 
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
+ 
+ static int pbc_msg_to_stderr = 1;
+ 
+diff -ru a/pbc/lex.yy.c b/pbc/lex.yy.c
+--- a/pbc/lex.yy.c	2013-06-15 05:43:04.000000000 +0200
++++ b/pbc/lex.yy.c	2015-07-23 21:46:15.000000000 +0200
+@@ -493,8 +493,8 @@
+ #include <stdio.h>
+ #include <stdint.h> // for intptr_t
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
+ 
+ #include "pbc_tree.h"
+ #define YYSTYPE tree_ptr
+diff -ru a/pbc/parser.lex b/pbc/parser.lex
+--- a/pbc/parser.lex	2013-06-15 05:43:00.000000000 +0200
++++ b/pbc/parser.lex	2015-07-23 21:38:30.000000000 +0200
+@@ -3,10 +3,10 @@
+ #include <stdio.h>
+ #include <stdint.h> // for intptr_t
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
+ 
+-#include "pbc_tree.h"
++#include "../pbc/pbc_tree.h"
+ #define YYSTYPE tree_ptr
+ #include "parser.tab.h"
+ 
+diff -ru a/pbc/parser.tab.c b/pbc/parser.tab.c
+--- a/pbc/parser.tab.c	2013-06-15 05:43:04.000000000 +0200
++++ b/pbc/parser.tab.c	2015-07-23 21:34:39.000000000 +0200
+@@ -72,10 +72,10 @@
+ #include <stdio.h>
+ #include <stdint.h> // for intptr_t
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
+ 
+-#include "pbc_tree.h"
++#include "../pbc/pbc_tree.h"
+ #define YYSTYPE tree_ptr
+ void yyerror(const char *s);
+ int yylex(void);
+diff -ru a/pbc/parser.y b/pbc/parser.y
+--- a/pbc/parser.y	2013-06-15 05:43:00.000000000 +0200
++++ b/pbc/parser.y	2015-07-23 21:31:21.000000000 +0200
+@@ -3,10 +3,10 @@
+ #include <stdio.h>
+ #include <stdint.h> // for intptr_t
+ #include <gmp.h>
+-#include "pbc_utils.h"
+-#include "pbc_field.h"
++#include "../include/pbc_utils.h"
++#include "../include/pbc_field.h"
+ 
+-#include "pbc_tree.h"
++#include "../pbc/pbc_tree.h"
+ #define YYSTYPE tree_ptr
+ void yyerror(const char *s);
+ int yylex(void);
+diff -ru a/pbc/pbc.c b/pbc/pbc.c
+--- a/pbc/pbc.c	2013-06-15 05:43:00.000000000 +0200
++++ b/pbc/pbc.c	2015-07-23 21:18:34.000000000 +0200
+@@ -5,14 +5,14 @@
+ 
+ #include <unistd.h>  // For getopt.
+ 
+-#include "pbc.h"
+-#include "pbc_fp.h"
+-#include "pbc_z.h"
+-#include "pbc_multiz.h"
+-#include "pbc_poly.h"
++#include "../include/pbc.h"
++#include "../include/pbc_fp.h"
++#include "../include/pbc_z.h"
++#include "../include/pbc_multiz.h"
++#include "../include/pbc_poly.h"
+ 
+-#include "misc/darray.h"
+-#include "misc/symtab.h"
++#include "../misc/darray.h"
++#include "../misc/symtab.h"
+ 
+ #include "pbc_tree.h"
+ 
+diff -ru a/pbc/pbc_getline.c b/pbc/pbc_getline.c
+--- a/pbc/pbc_getline.c	2013-06-15 05:43:00.000000000 +0200
++++ b/pbc/pbc_getline.c	2015-07-23 21:17:58.000000000 +0200
+@@ -1,7 +1,7 @@
+ #include <stdio.h>
+ #include <string.h>
+ 
+-#include "pbc_memory.h"
++#include "../include/pbc_memory.h"
+ 
+ char *pbc_getline(const char *prompt) {
+   char s[1024];
