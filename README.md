@@ -14,12 +14,16 @@ user@PC1:~/somedirectory/webports$ gclient sync --with_branch_heads
 </code></pre>
 
 Howto compile PBC for pNaCl:
-Copy this PBC directory to you Webports src/ports directory.
+
+Copy this PBC directory to your Webports directory (src/ports). 
+
 Build the PBC lib as usual. e.g. 
 
 <pre><code>
 .../webports/src/ports/pbc$ NACL_ARCH=pnacl make pbc 
 </code></pre>
 
-Tested with NaCL version: pepper_49 (stable) May 2016.
+The pbc sources are fetched and patched. A compiled lib will be presend for your pNaCl software. 
+
+Tested with NaCL version: pepper_49 (stable) and pbc-0.5.14.tar.gz, May 2016.
 
