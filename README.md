@@ -23,7 +23,7 @@ Build the PBC lib as usual. e.g.
 .../webports/src/ports/pbc$ NACL_ARCH=pnacl make pbc 
 </code></pre>
 
-The pbc sources are fetched and patched. A compiled lib will be presend for your pNaCl software. 
+The pbc sources are fetched and patched. A compiled lib will be present for your further (p)NaCl development. 
 
 Tested with NaCL version: pepper_49 (stable) and pbc-0.5.14.tar.gz, May 2016.
 
